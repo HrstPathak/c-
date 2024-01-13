@@ -7,50 +7,35 @@ class Program
     {
         Dictionary<string, List<string>> studentSubjects = new Dictionary<string, List<string>>();
 
-        Console.WriteLine("Enter the names of students and their subjects.");
-        Console.WriteLine("Use 'Quit' to stop adding students.");
-
         while (true)
         {
-            Console.Write("Enter the name of a student: ");
-            string studentName = Console.ReadLine().Trim();
+            Console.WriteLine("Enter the name of a student:");
+            string studentName = Console.ReadLine();
 
-            // Check if the user wants to quit
-            if (string.Equals(studentName, "quit", StringComparison.OrdinalIgnoreCase))
+            if (studentName.Equals("quit", StringComparison.OrdinalIgnoreCase))
                 break;
 
-            Console.WriteLine($"Enter the subjects for {studentName}, separated by commas only:");
+            Console.WriteLine("Enter the subjects for the student, separated by commas only:");
             string subjectsInput = Console.ReadLine();
-
-            // Split subjects by commas and create a List<string>
             List<string> subjects = new List<string>(subjectsInput.Split(','));
 
-            // Add the student and their subjects to the dictionary
             studentSubjects[studentName] = subjects;
         }
 
-        Console.WriteLine("\nEnter the name of the student to search for their subjects.");
+        Console.WriteLine("Enter the name of the student to search for their subjects:");
+        string searchName = Console.ReadLine();
 
-        while (true)
+        if (studentSubjects.TryGetValue(searchName, out List<string> foundSubjects))
         {
-            Console.Write("Enter the student's name (type 'quit' to stop searching): ");
-            string searchName = Console.ReadLine().Trim();
-
-            // Check if the user wants to quit searching
-            if (string.Equals(searchName, "quit", StringComparison.OrdinalIgnoreCase))
-                break;
-
-            // Search for the student and display their subjects
-            if (studentSubjects.TryGetValue(searchName, out List<string> subjects))
+            Console.WriteLine("Subjects:");
+            foreach (var subject in foundSubjects)
             {
-                Console.WriteLine($"Subjects for {searchName}: {string.Join(", ", subjects)}");
-            }
-            else
-            {
-                Console.WriteLine($"Student '{searchName}' not found.");
+                Console.WriteLine(subject);
             }
         }
-
-        Console.WriteLine("Program terminated.");
+        else
+        {
+            Console.WriteLine("Student not found.");
+        }
     }
 }
