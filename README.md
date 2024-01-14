@@ -1,41 +1,65 @@
-public class program
+using System; using System. 10;
+
+using System.Collections.Generic;
+
+class tester
+
+public int[] ReadNumbersFromFile(string filename)
+
+if(file.Exists(filename))
+
+StreamReader sr new Streamileader (filename);
+
+string line = null;
+
+line sr.teadToEn eadToEnd();
+
+string[] word line.Split();
+
+int[] numbers new int[word.Length]; for(int i=0;i<word.Length; i++)
+
+if(int.TryParse(word[i], out internusber))
+
+else
+
+numbers[i] = number;
+
+Console.WriteLine($"Invalid number found: (word[i])");
+
+numbers[i];
+
+return numbers;
+
+else
+
+return new int[0];
+
+public double CalculateSum(int[] arr)
+
+double sum=0
+
+for(int i=0;i<arr.Length;i++)
+
+sunt arr[i];
+
+return sum;
+
+public double CalculateAverage(int[] arr)
+
+double Sum CalculataSum(arr);
+
+return Sum/arr.Length;
+
+public class Program
 
 public static void Main()
 
-try
+string filename data.txt"; I Streamriter su new StreamWriter(filename); string txt Console.ReadLine(); sw.Close();
 
-I
+sw.WriteLine(txt);
 
-string filename "sample.txt";
+testort new tester();
 
-tester t new tester();
+int[] arrt.Readiumbers FronFile(filename);
 
-int ch-8; while(ch!-3)
-
-int.Parse(Console.ReadLine());
-
-DotNET
-
-switch(ch)
-
-case 1: t.ReadFromFile(filename);
-
-break;
-
-case 2: string txt Console.ReadLine();
-
-t.WriteToFile(filename, txt);
-
-break;
-
-case 3: Console.WriteLine("Exiting the program. Goodbye!");
-
-break;
-
-default:Console.WriteLine("Invalid option. Please select a valid option.");
-
-Console.WriteLine();
-
-break;
-
-)
+Console.WriteLine($"Sum: (t.CalculateSum(arr)}\nAverage: (t.CalculateAverage(arr))");
