@@ -1,41 +1,41 @@
-using System;
-using System.Collections.Generic;
+public class program
 
-class Program
-{
-    static void Main()
-    {
-        Dictionary<string, List<string>> studentSubjects = new Dictionary<string, List<string>>();
+public static void Main()
 
-        while (true)
-        {
-            Console.WriteLine("Enter the name of a student:");
-            string studentName = Console.ReadLine();
+try
 
-            if (studentName.Equals("quit", StringComparison.OrdinalIgnoreCase))
-                break;
+I
 
-            Console.WriteLine("Enter the subjects for the student, separated by commas only:");
-            string subjectsInput = Console.ReadLine();
-            List<string> subjects = new List<string>(subjectsInput.Split(','));
+string filename "sample.txt";
 
-            studentSubjects[studentName] = subjects;
-        }
+tester t new tester();
 
-        Console.WriteLine("Enter the name of the student to search for their subjects:");
-        string searchName = Console.ReadLine();
+int ch-8; while(ch!-3)
 
-        if (studentSubjects.TryGetValue(searchName, out List<string> foundSubjects))
-        {
-            Console.WriteLine("Subjects:");
-            foreach (var subject in foundSubjects)
-            {
-                Console.WriteLine(subject);
-            }
-        }
-        else
-        {
-            Console.WriteLine("Student not found.");
-        }
-    }
-}
+int.Parse(Console.ReadLine());
+
+DotNET
+
+switch(ch)
+
+case 1: t.ReadFromFile(filename);
+
+break;
+
+case 2: string txt Console.ReadLine();
+
+t.WriteToFile(filename, txt);
+
+break;
+
+case 3: Console.WriteLine("Exiting the program. Goodbye!");
+
+break;
+
+default:Console.WriteLine("Invalid option. Please select a valid option.");
+
+Console.WriteLine();
+
+break;
+
+)
