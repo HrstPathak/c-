@@ -1,65 +1,56 @@
-using System; using System. 10;
+// You are using C#
+using System;
+using System.IO;
 
-using System.Collections.Generic;
+class tester{
+    string filename="sample.txt";
+    public void WriteToFile(string str){
+            if(!File.Exists(filename)){
+                File.WriteAllText(filename,string.Empty);
+            }
+           StreamWriter sw=new StreamWriter(filename);
+           sw.WriteLine(str);
+           sw.Close();
+           Console.WriteLine("Content successfully written to the file.");
+           Console.WriteLine("");
+    }
+    public void ReadFromFile(){
+            StreamReader sr=new StreamReader(filename);
+            string text=sr.ReadLine();
+            Console.WriteLine($"File contents:{text}");
+            Console.WriteLine("");
+        
+    }
+    
+}
 
-class tester
 
-public int[] ReadNumbersFromFile(string filename)
-
-if(file.Exists(filename))
-
-StreamReader sr new Streamileader (filename);
-
-string line = null;
-
-line sr.teadToEn eadToEnd();
-
-string[] word line.Split();
-
-int[] numbers new int[word.Length]; for(int i=0;i<word.Length; i++)
-
-if(int.TryParse(word[i], out internusber))
-
-else
-
-numbers[i] = number;
-
-Console.WriteLine($"Invalid number found: (word[i])");
-
-numbers[i];
-
-return numbers;
-
-else
-
-return new int[0];
-
-public double CalculateSum(int[] arr)
-
-double sum=0
-
-for(int i=0;i<arr.Length;i++)
-
-sunt arr[i];
-
-return sum;
-
-public double CalculateAverage(int[] arr)
-
-double Sum CalculataSum(arr);
-
-return Sum/arr.Length;
-
-public class Program
-
-public static void Main()
-
-string filename data.txt"; I Streamriter su new StreamWriter(filename); string txt Console.ReadLine(); sw.Close();
-
-sw.WriteLine(txt);
-
-testort new tester();
-
-int[] arrt.Readiumbers FronFile(filename);
-
-Console.WriteLine($"Sum: (t.CalculateSum(arr)}\nAverage: (t.CalculateAverage(arr))");
+class Program{
+    public static void Main(){
+        try{
+        int ch=0;
+        tester t = new tester();
+        while(ch!=3){
+            ch=Convert.ToInt32(Console.ReadLine());
+            switch(ch){
+                case 1:
+                    t.ReadFromFile();
+                    break;
+                case 2:
+                string str=Console.ReadLine();
+                    t.WriteToFile(str);
+                    break;
+                case 3:
+                    Console.WriteLine("Exiting the program. Goodbye!");
+                    Console.WriteLine("");
+                    break;
+                default:
+                    Console.WriteLine("Invalid option. Please select a valid option.");
+                    Console.WriteLine("");
+                    break;
+            }
+        }}catch(Exception ex){
+            Console.WriteLine(ex.Message);
+        }
+    }
+}
