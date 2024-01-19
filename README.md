@@ -1,56 +1,44 @@
 // You are using C#
 using System;
-using System.IO;
-
-class tester{
-    string filename="sample.txt";
-    public void WriteToFile(string str){
-            if(!File.Exists(filename)){
-                File.WriteAllText(filename,string.Empty);
+using System.Collections.Generic;
+// using System.Object;
+sealed class Logger{
+    private static Logger instance;   //PRIVATE INSTANCE
+    private static object lockObject=new object();
+    private Logger(){}   //CONSTRUCTOR
+    public static Logger Instance{
+        get {
+                lock(lockObject){
+                        instance = new Logger();
+                        return instance;
+                }
             }
-           StreamWriter sw=new StreamWriter(filename);
-           sw.WriteLine(str);
-           sw.Close();
-           Console.WriteLine("Content successfully written to the file.");
-           Console.WriteLine("");
     }
-    public void ReadFromFile(){
-            StreamReader sr=new StreamReader(filename);
-            string text=sr.ReadLine();
-            Console.WriteLine($"File contents:{text}");
-            Console.WriteLine("");
-        
+    private List<string> logMessages;
+    public void LogMessage(string str){
+        logMessages.Add(str);
     }
     
+    public void DisplayLogMessages(){
+        Console.WriteLine("Log Message:");
+        foreach(string s in logMessages){
+            Console.WriteLine(s+" : ");
+        }
+    }
 }
-
 
 class Program{
     public static void Main(){
-        try{
-        int ch=0;
-        tester t = new tester();
-        while(ch!=3){
-            ch=Convert.ToInt32(Console.ReadLine());
-            switch(ch){
-                case 1:
-                    t.ReadFromFile();
-                    break;
-                case 2:
-                string str=Console.ReadLine();
-                    t.WriteToFile(str);
-                    break;
-                case 3:
-                    Console.WriteLine("Exiting the program. Goodbye!");
-                    Console.WriteLine("");
-                    break;
-                default:
-                    Console.WriteLine("Invalid option. Please select a valid option.");
-                    Console.WriteLine("");
-                    break;
-            }
-        }}catch(Exception ex){
-            Console.WriteLine(ex.Message);
+        int n=Convert.ToInt32(Console.ReadLine());
+        Logger L=Logger.Instance;
+        while(n!=0){
+            string s=Console.ReadLine();
+            L.LogMessage(s);
+            
+            n--;
         }
+        
+        L.DisplayLogMessages();
+        
     }
 }
